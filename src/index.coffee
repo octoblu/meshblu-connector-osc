@@ -47,7 +47,7 @@ class Osc extends EventEmitter
     { @uuid } = device
     debug 'started', @uuid
 
-  connectToUdp = (options) =>
+  connectToUdp: (options) =>
     debug 'connecting to udp'
     options =
       localAddress: options.ipAddress
