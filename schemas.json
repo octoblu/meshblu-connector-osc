@@ -11,17 +11,12 @@
       }
     },
     "configure": {
-      "my-default-config": {
+      "default-config": {
         "type": "object",
         "properties": {
           "options": {
             "type": "object",
             "properties": {
-              "ipAddress": {
-                "type": "string",
-                "required": true,
-                "default": "0.0.0.0"
-              },
               "listenPort": {
                 "type": "number",
                 "required": true,
@@ -43,21 +38,74 @@
       }
     },
     "message": {
-      "example-message-01": {
+      "osc-message": {
         "type": "object",
         "properties": {
+          "oscType": {
+            "type": "string",
+            "enum": ["message"],
+            "default": "message"
+          },
           "address": {
             "type": "string",
             "required": true
           },
-          "number": {
-            "type": "boolean",
-            "title": "Is this a number?"
-          },
           "args": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["string", "float", "integer", "blob", "true", "false", "null", "bang", "timetag", "array"]
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "osc-bundle": {
+        "type": "object",
+        "properties": {
+          "oscType": {
+            "type": "string",
+            "enum": ["bundle"],
+            "default": "bundle"
+          },
+          "timetag": {
+            "type": "number",
+            "required": true
+          },
+          "elements": {
+            "type": "object",
+            "properties": {
+              "oscType": {
+                "type": "string",
+                "enum": ["message"],
+                "default": "message"
+              },
+              "address": {
+                "type": "string",
+                "required": true
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["string", "float", "integer", "blob", "true", "false", "null", "bang", "timetag", "array"]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
             }
           }
         }

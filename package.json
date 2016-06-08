@@ -31,7 +31,7 @@
     "lodash": "^4.13.1",
     "meshblu-config": "^4.0.0",
     "meshblu-connector-runner": "^6.0.0",
-    "osc": "^2.1.0"
+    "osc-min": "^1.1.1"
   },
   "meshbluConnector": {
     "githubSlug": "octoblu/meshblu-connector-osc",
