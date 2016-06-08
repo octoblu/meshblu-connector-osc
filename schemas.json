@@ -15,10 +15,27 @@
         "type": "object",
         "properties": {
           "options": {
-            "type" : "object",
-            "properties" : {
-              "example" : {
-                "type" : "string"
+            "type": "object",
+            "properties": {
+              "ipAddress": {
+                "type": "string",
+                "required": true,
+                "default": "0.0.0.0"
+              },
+              "listenPort": {
+                "type": "number",
+                "required": true,
+                "default": 7400
+              },
+              "sendToPort": {
+                "type": "number",
+                "required": true,
+                "default": 3333
+              },
+              "sendToIp": {
+                "type": "string",
+                "required": true,
+                "default": "127.0.0.1"
               }
             }
           }
@@ -29,30 +46,21 @@
       "example-message-01": {
         "type": "object",
         "properties": {
-          "example-opt": {
-            "type": "string"
+          "address": {
+            "type": "string",
+            "required": true
           },
-          "another-example-opt":{
-            "type": "string"
-          }
-        },
-        "x-form-schema": {
-          "angular": "message.example-01.angular"
-        },
-        "x-group-name": "Message Example Group",
-        "required": ["example-opt", "another-example-opt"]
-      },
-      "example-message-02": {
-        "type": "object",
-        "properties": {
-          "some-opt": {
-            "type": "string"
+          "number": {
+            "type": "boolean",
+            "title": "Is this a number?"
           },
-          "another-some-opt":{
-            "type": "string"
+          "args": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
-        },
-        "required": ["some-opt", "another-some-opt"]
+        }
       }
     }
   }
