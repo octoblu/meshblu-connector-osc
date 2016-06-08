@@ -82,28 +82,31 @@
             "required": true
           },
           "elements": {
-            "type": "object",
-            "properties": {
-              "oscType": {
-                "type": "string",
-                "enum": ["message"],
-                "default": "message"
-              },
-              "address": {
-                "type": "string",
-                "required": true
-              },
-              "args": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": ["string", "float", "integer", "blob", "true", "false", "null", "bang", "timetag", "array"]
-                    },
-                    "value": {
-                      "type": "string"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "oscType": {
+                  "type": "string",
+                  "enum": ["message"],
+                  "default": "message"
+                },
+                "address": {
+                  "type": "string",
+                  "required": true
+                },
+                "args": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": ["string", "float", "integer", "blob", "true", "false", "null", "bang", "timetag", "array"]
+                      },
+                      "value": {
+                        "type": "string"
+                      }
                     }
                   }
                 }
