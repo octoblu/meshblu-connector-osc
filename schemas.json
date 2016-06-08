@@ -30,7 +30,7 @@
               "sendToIp": {
                 "type": "string",
                 "required": true,
-                "default": "127.0.0.1"
+                "default": "localhost"
               }
             }
           }
@@ -39,6 +39,7 @@
     },
     "message": {
       "osc-message": {
+        "title": "Send OSC Message",
         "type": "object",
         "properties": {
           "oscType": {
@@ -68,6 +69,7 @@
         }
       },
       "osc-bundle": {
+        "title": "Send Bundle",
         "type": "object",
         "properties": {
           "oscType": {
