@@ -7,6 +7,7 @@ udp             = require "dgram"
 class Osc extends EventEmitter
   constructor: ->
     debug 'Osc constructed'
+    @options = {}
 
   isOnline: (callback) =>
     callback null, running: true
@@ -45,7 +46,9 @@ class Osc extends EventEmitter
     return payload
 
   onConfig: (device) =>
+    return if _.isEqual(@options, device.options)
     @options = _.defaults(device.options,
+      listenIp: "0.0.0.0"
       listenPort: 7400
       sendToPort: 3333
       sendToIp: '127.0.0.1')
@@ -62,7 +65,7 @@ class Osc extends EventEmitter
           }
       catch error
           debug "invalid OSC packet"
-    @sock.bind @options.listenPort
+    @sock.bind @options.listenPort, @options.listenIp
 
   sendOSC: (message) =>
     buf = osc.toBuffer message

@@ -17,6 +17,11 @@
           "options": {
             "type": "object",
             "properties": {
+              "listenIp": {
+                "type": "string",
+                "required": true,
+                "default": "0.0.0.0"
+              },
               "listenPort": {
                 "type": "number",
                 "required": true,
