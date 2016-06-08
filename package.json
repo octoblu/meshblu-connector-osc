@@ -1,6 +1,6 @@
 {
   "name": "meshblu-connector-osc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Meshblu Connector ",
   "homepage": "https://github.com/octoblu/osc",
   "bugs": "https://github.com/octoblu/osc/issues",
@@ -28,8 +28,10 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "debug": "^2.2.0",
+    "lodash": "^4.13.1",
     "meshblu-config": "^4.0.0",
-    "meshblu-connector-runner": "^6.0.0"
+    "meshblu-connector-runner": "^6.0.0",
+    "osc": "^2.1.0"
   },
   "meshbluConnector": {
     "githubSlug": "octoblu/meshblu-connector-osc",
