@@ -1,0 +1,37 @@
+{
+  "title": "Send OSC Message",
+  "type": "object",
+  "properties": {
+    "oscType": {
+      "title": "OSC Type",
+      "type": "string",
+      "default": "message"
+    },
+    "address": {
+      "title": "Address",
+      "type": "string"
+    },
+    "args": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "title": "Type",
+            "type": "string",
+            "enum": ["string", "float", "integer", "blob", "true", "false", "null", "bang", "timetag", "array"]
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        }
+      },
+      "required": ["address", "args"]
+    }
+  },
+  "x-form-schema": {
+    "angular": "message.osc-message.angular"
+  },
+  "required": ["oscType", "address", "args"]
+}

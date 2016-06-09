@@ -1,6 +1,6 @@
 {
   "name": "meshblu-connector-osc",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Meshblu Connector ",
   "homepage": "https://github.com/octoblu/osc",
   "bugs": "https://github.com/octoblu/osc/issues",
@@ -35,15 +35,15 @@
   },
   "meshbluConnector": {
     "githubSlug": "octoblu/meshblu-connector-osc",
-    "schemasUrl": "https://raw.githubusercontent.com/octoblu/meshblu-connector-osc/v1.0.7/schemas.json"
+    "schemasUrl": "https://raw.githubusercontent.com/octoblu/meshblu-connector-osc/v2.0.0/schemas.json"
   },
   "platformDependencies": {
     "darwin": [],
     "win32": [],
     "win64": [],
     "linux": [],
-    "android": [],
-    "ios": []
+    "android": null,
+    "ios": null
   },
   "license": "MIT",
   "keywords": [
