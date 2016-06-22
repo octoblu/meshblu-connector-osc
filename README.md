@@ -1,3 +1,5 @@
+# Unofficial Octoblu Connector - Use at your own risk
+
 # meshblu-connector-osc
 
 [![Dependency status](http://img.shields.io/david/octoblu/meshblu-connector-osc.svg?style=flat)](https://david-dm.org/octoblu/meshblu-connector-osc)
