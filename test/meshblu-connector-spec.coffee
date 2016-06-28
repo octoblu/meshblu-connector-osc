@@ -1,6 +1,6 @@
 Osc = require '../'
 
-describe 'Osc', ->
+xdescribe 'Osc', ->
   beforeEach ->
     @sut = new Osc
 
