@@ -7,7 +7,7 @@ _               = require 'lodash'
 class Connector extends EventEmitter
   constructor: ->
     @options = {}
-    
+
   isOnline: (callback) =>
     callback null, running: true
 
@@ -40,12 +40,20 @@ class Connector extends EventEmitter
     payload.args = _.map payload.args, (arg={}) =>
       arg.value = @getArgValue arg
       return arg
-    @sendOSC payload
+    return payload
 
   formatBundle: (payload={}) =>
     payload.oscType = "bundle"
     payload.elements = _.map payload.elements, @formatMessage
-    @sendOSC payload
+    return payload
+
+  handleMessage: (payload) =>
+    message = @formatMessage payload
+    @sendOSC message
+
+  handleBundle: (payload) =>
+    message = @formatBundle payload
+    @sendOSC message
 
   bindOSC: =>
     @sock = udp.createSocket "udp4", (msg, rinfo) =>

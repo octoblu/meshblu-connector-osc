@@ -1,13 +1,13 @@
 http = require 'http'
 
-class OscMessage
+class OscBundle
   constructor: ({@connector}) ->
-    throw new Error 'OscMessage requires connector' unless @connector?
+    throw new Error 'OscBundle requires connector' unless @connector?
 
   do: ({data}, callback) =>
     return callback @_userError(422, 'data.address is required') unless data?.address?
 
-    @connector.formatMessage data
+    @connector.handleBundle data
 
     metadata =
       code: 200
@@ -20,4 +20,4 @@ class OscMessage
     error.code = code
     return error
 
-module.exports = OscMessage
+module.exports = OscBundle

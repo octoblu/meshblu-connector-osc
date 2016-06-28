@@ -7,7 +7,7 @@ class OscMessage
   do: ({data}, callback) =>
     return callback @_userError(422, 'data.address is required') unless data?.address?
 
-    @connector.formatBundle data
+    @connector.handleMessage data
 
     metadata =
       code: 200
