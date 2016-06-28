@@ -1,0 +1,23 @@
+title: "Default Configuration"
+type: "object"
+properties:
+  options:
+    'title': 'Options'
+    'type': 'object'
+    'properties':
+      'listenIp':
+        'title': 'Listen IP Address'
+        'type': 'string'
+        'default': '0.0.0.0'
+      'listenPort':
+        'title': 'Listen Port'
+        'type': 'number'
+        'default': 7400
+      'sendToIp':
+        'title': 'Send to IP Address'
+        'type': 'string'
+        'default': 'localhost'
+      'sendToPort':
+        'title': 'Send to Port'
+        'type': 'number'
+        'default': 3333

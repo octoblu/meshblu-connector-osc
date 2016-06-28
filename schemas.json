@@ -1,86 +1,287 @@
 {
   "schemas": {
-    "version": "1.0.0",
     "configure": {
-      "default-config": {
-        "title": "Default Config",
-        "type": "object",
+      "Default": {
         "properties": {
           "options": {
-            "title": "Options",
-            "type": "object",
             "properties": {
               "listenIp": {
+                "default": "0.0.0.0",
                 "title": "Listen IP Address",
-                "type": "string",
-                "default": "0.0.0.0"
+                "type": "string"
               },
               "listenPort": {
+                "default": 7400,
                 "title": "Listen Port",
-                "type": "number",
-                "default": 7400
+                "type": "number"
               },
               "sendToIp": {
+                "default": "localhost",
                 "title": "Send to IP Address",
-                "type": "string",
-                "default": "localhost"
+                "type": "string"
               },
               "sendToPort": {
+                "default": 3333,
                 "title": "Send to Port",
-                "type": "number",
-                "default": 3333
+                "type": "number"
               }
-            }
+            },
+            "title": "Options",
+            "type": "object"
           }
+        },
+        "title": "Default Configuration",
+        "type": "object",
+        "x-form-schema": {
+          "angular": "configure.Default.angular"
+        }
+      }
+    },
+    "form": {
+      "configure": {
+        "Default": {
+          "angular": [
+            "options.listenIp",
+            "options.listenPort",
+            "options.sendToIp",
+            "options.sendToPort"
+          ]
+        }
+      },
+      "message": {
+        "OscBundle": {
+          "angular": [
+            "data.address",
+            "data.args"
+          ]
+        },
+        "OscMessage": {
+          "angular": [
+            "data.timetag",
+            "data.elements"
+          ]
         }
       }
     },
     "message": {
-      "osc-message": {
-        "$ref": "https://raw.githubusercontent.com/octoblu/meshblu-connector-osc/v2.0.0/message.json"
-      },
-      "osc-bundle": {
-        "title": "Send Bundle",
-        "type": "object",
+      "OscBundle": {
         "properties": {
-          "oscType": {
-            "title": "OSC Type",
-            "type": "string",
-            "default": "bundle"
+          "data": {
+            "properties": {
+              "address": {
+                "title": "Address",
+                "type": "string"
+              },
+              "args": {
+                "items": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "string",
+                        "float",
+                        "integer",
+                        "blob",
+                        "true",
+                        "false",
+                        "null",
+                        "bang",
+                        "timetag",
+                        "array"
+                      ],
+                      "title": "Type",
+                      "type": "string"
+                    },
+                    "value": {
+                      "title": "Value",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "address",
+              "args"
+            ],
+            "type": "object"
           },
-          "timetag": {
-            "title": "Time Tag",
-            "type": "number"
-          },
-          "elements": {
-            "title": "Elements",
-            "type": "array",
-            "items": {
-              "$ref": "https://raw.githubusercontent.com/octoblu/meshblu-connector-osc/v2.0.0/message.json"
-            }
+          "metadata": {
+            "properties": {
+              "jobType": {
+                "default": "OscBundle",
+                "enum": [
+                  "OscBundle"
+                ],
+                "type": "string"
+              },
+              "respondTo": {
+              }
+            },
+            "required": [
+              "jobType"
+            ],
+            "type": "object"
           }
         },
+        "required": [
+          "metadata"
+        ],
+        "title": "Send OSC Message",
+        "type": "object",
         "x-form-schema": {
-          "angular": "message.osc-bundle.angular"
+          "angular": "message.OscBundle.angular"
         },
-        "required": [ "oscType", "timetag", "elements" ]
+        "x-response-schema": "OscBundle"
+      },
+      "OscMessage": {
+        "properties": {
+          "data": {
+            "properties": {
+              "elements": {
+                "items": {
+                  "properties": {
+                    "address": {
+                      "title": "Address",
+                      "type": "string"
+                    },
+                    "args": {
+                      "items": {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "string",
+                              "float",
+                              "integer",
+                              "blob",
+                              "true",
+                              "false",
+                              "null",
+                              "bang",
+                              "timetag",
+                              "array"
+                            ],
+                            "title": "Type",
+                            "type": "string"
+                          },
+                          "value": {
+                            "title": "Value",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "title": "Elements",
+                "type": "array"
+              },
+              "timetag": {
+                "title": "Time Tag",
+                "type": "number"
+              }
+            },
+            "type": "object"
+          },
+          "metadata": {
+            "properties": {
+              "jobType": {
+                "default": "OscMessage",
+                "enum": [
+                  "OscMessage"
+                ],
+                "type": "string"
+              },
+              "respondTo": {
+              }
+            },
+            "required": [
+              "jobType"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "metadata"
+        ],
+        "title": "Send OSC Bundle",
+        "type": "object",
+        "x-form-schema": {
+          "angular": "message.OscMessage.angular"
+        },
+        "x-response-schema": "OscMessage"
       }
     },
-    "form": {
-      "message": {
-        "osc-message": {
-          "angular": [
-            { "key": "address" },
-            { "key": "args" }
-          ]
+    "response": {
+      "OscBundle": {
+        "properties": {
+          "data": {
+            "properties": {
+              "example": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "example"
+            ],
+            "type": "object"
+          },
+          "metadata": {
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "code"
+            ],
+            "type": "object"
+          }
         },
-        "osc-bundle": {
-          "angular": [
-            { "key": "timetag" },
-            { "key": "elements" }
-          ]
-        }
+        "title": "DoSomething",
+        "type": "object"
+      },
+      "OscMessage": {
+        "properties": {
+          "data": {
+            "properties": {
+              "example": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "example"
+            ],
+            "type": "object"
+          },
+          "metadata": {
+            "properties": {
+              "code": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "status",
+              "code"
+            ],
+            "type": "object"
+          }
+        },
+        "title": "DoSomething",
+        "type": "object"
       }
-    }
+    },
+    "version": "2.0.0"
   }
 }

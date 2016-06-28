@@ -1,22 +1,24 @@
 {
   "name": "meshblu-connector-osc",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Meshblu Connector ",
-  "homepage": "https://github.com/octoblu/osc",
-  "bugs": "https://github.com/octoblu/osc/issues",
+  "homepage": "https://github.com/sqrtofsaturn/osc",
+  "bugs": "https://github.com/sqrtofsaturn/osc/issues",
   "author": {
     "name": "Octoblu",
-    "url": "https://github.com/octoblu"
+    "url": "https://github.com/sqrtofsaturn"
   },
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/octoblu/osc.git"
+    "url": "https://github.com/sqrtofsaturn/osc.git"
   },
   "scripts": {
     "start": "meshblu-connector-runner",
     "test": "mocha",
-    "package": "meshblu-connector-packager"
+    "package": "meshblu-connector-packager",
+    "generate:package": "meshblu-connector-packager",
+    "generate:schema": "meshblu-connector-schema-generator > schemas.json"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -28,14 +30,15 @@
   "dependencies": {
     "coffee-script": "^1.10.0",
     "debug": "^2.2.0",
+    "fs-cson": "^0.3.2",
     "lodash": "^4.13.1",
-    "meshblu-config": "^4.0.0",
-    "meshblu-connector-runner": "^6.0.0",
+    "meshblu-config": "^5.1.2",
+    "meshblu-connector-runner": "^8.1.0",
+    "meshblu-connector-schema-generator": "^2.1.0",
     "osc-min": "^1.1.1"
   },
   "meshbluConnector": {
-    "githubSlug": "octoblu/meshblu-connector-osc",
-    "schemasUrl": "https://raw.githubusercontent.com/octoblu/meshblu-connector-osc/v2.0.0/schemas.json"
+    "githubSlug": "sqrtofsaturn/meshblu-connector-osc"
   },
   "platformDependencies": {
     "darwin": [],

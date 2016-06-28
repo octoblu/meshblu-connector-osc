@@ -1,35 +1,19 @@
-_               = require 'lodash'
 {EventEmitter}  = require 'events'
+debug           = require('debug')('meshblu-connector-osc:index')
 osc             = require 'osc-min'
 udp             = require "dgram"
-debug           = require('debug')('meshblu-connector-osc:index')
+_               = require 'lodash'
 
-class Osc extends EventEmitter
-  onMessage: (message={}) =>
-    { oscType } = message.payload ? {}
-    return debug 'invalid oscType' unless oscType
-    message = @formatMessage payload if oscType == 'message'
-    message = @formatBundle payload if oscType == 'bundle'
-    @sendOSC message
+class Connector extends EventEmitter
+  constructor: ->
+    @options = {}
+    
+  isOnline: (callback) =>
+    callback null, running: true
 
-  getArgValue: ({ type, value }) =>
-    return parseInt(value) if type == 'integer'
-    return parseFloat(value) if type == 'float'
-    return true if type == 'true'
-    return true if type == true
-    return false if type == 'false'
-    return false if type == false
-    return null
-
-  formatMessage: (payload={}) =>
-    program.args = _.map payload.args, (arg={}) =>
-      arg.value = @getArgValue arg
-      return arg
-    return payload
-
-  formatBundle: (payload={}) =>
-    payload.elements = _.map payload.elements, @formatMessage
-    return payload
+  close: (callback) =>
+    debug 'on close'
+    callback()
 
   onConfig: (device={}) =>
     return if _.isEqual @options, device.options
@@ -41,6 +25,27 @@ class Osc extends EventEmitter
     }
     debug 'on config', @options
     @bindOSC()
+
+  getArgValue: ({ type, value }) =>
+    return parseInt(value) if type == 'integer'
+    return parseFloat(value) if type == 'float'
+    return true if type == 'true'
+    return true if type == true
+    return false if type == 'false'
+    return false if type == false
+    return null
+
+  formatMessage: (payload={}) =>
+    payload.oscType = "message"
+    payload.args = _.map payload.args, (arg={}) =>
+      arg.value = @getArgValue arg
+      return arg
+    @sendOSC payload
+
+  formatBundle: (payload={}) =>
+    payload.oscType = "bundle"
+    payload.elements = _.map payload.elements, @formatMessage
+    @sendOSC payload
 
   bindOSC: =>
     @sock = udp.createSocket "udp4", (msg, rinfo) =>
@@ -61,7 +66,10 @@ class Osc extends EventEmitter
     buf = osc.toBuffer message
     @sock.send buf, 0, buf.length, @options.sendToPort, @options.sendToIp
 
-  start: (device) =>
-    @onConfig device
 
-module.exports = Osc
+  start: (device, callback) =>
+    debug 'started'
+    @onConfig device
+    callback()
+
+module.exports = Connector
