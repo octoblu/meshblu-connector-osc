@@ -5,15 +5,10 @@ class OscBundle
     throw new Error 'OscBundle requires connector' unless @connector?
 
   do: ({data}, callback) =>
-    return callback @_userError(422, 'data.address is required') unless data?.address?
+    # return callback @_userError(422, 'data.timetag is required') unless data?.timetag?
 
     @connector.handleBundle data
-
-    metadata =
-      code: 200
-      status: http.STATUS_CODES[200]
-
-    callback null, {metadata, data}
+    callback null
 
   _userError: (code, message) =>
     error = new Error message

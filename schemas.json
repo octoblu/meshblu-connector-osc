@@ -51,91 +51,20 @@
       "message": {
         "OscBundle": {
           "angular": [
-            "data.address",
-            "data.args"
+            "data.timetag",
+            "data.elements"
           ]
         },
         "OscMessage": {
           "angular": [
-            "data.timetag",
-            "data.elements"
+            "data.address",
+            "data.args"
           ]
         }
       }
     },
     "message": {
       "OscBundle": {
-        "properties": {
-          "data": {
-            "properties": {
-              "address": {
-                "title": "Address",
-                "type": "string"
-              },
-              "args": {
-                "items": {
-                  "properties": {
-                    "type": {
-                      "enum": [
-                        "string",
-                        "float",
-                        "integer",
-                        "blob",
-                        "true",
-                        "false",
-                        "null",
-                        "bang",
-                        "timetag",
-                        "array"
-                      ],
-                      "title": "Type",
-                      "type": "string"
-                    },
-                    "value": {
-                      "title": "Value",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                },
-                "type": "array"
-              }
-            },
-            "required": [
-              "address",
-              "args"
-            ],
-            "type": "object"
-          },
-          "metadata": {
-            "properties": {
-              "jobType": {
-                "default": "OscBundle",
-                "enum": [
-                  "OscBundle"
-                ],
-                "type": "string"
-              },
-              "respondTo": {
-              }
-            },
-            "required": [
-              "jobType"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "title": "Send OSC Message",
-        "type": "object",
-        "x-form-schema": {
-          "angular": "message.OscBundle.angular"
-        },
-        "x-response-schema": "OscBundle"
-      },
-      "OscMessage": {
         "properties": {
           "data": {
             "properties": {
@@ -190,9 +119,9 @@
           "metadata": {
             "properties": {
               "jobType": {
-                "default": "OscMessage",
+                "default": "OscBundle",
                 "enum": [
-                  "OscMessage"
+                  "OscBundle"
                 ],
                 "type": "string"
               },
@@ -211,6 +140,77 @@
         "title": "Send OSC Bundle",
         "type": "object",
         "x-form-schema": {
+          "angular": "message.OscBundle.angular"
+        },
+        "x-response-schema": "OscBundle"
+      },
+      "OscMessage": {
+        "properties": {
+          "data": {
+            "properties": {
+              "address": {
+                "title": "Address",
+                "type": "string"
+              },
+              "args": {
+                "items": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "string",
+                        "float",
+                        "integer",
+                        "blob",
+                        "true",
+                        "false",
+                        "null",
+                        "bang",
+                        "timetag",
+                        "array"
+                      ],
+                      "title": "Type",
+                      "type": "string"
+                    },
+                    "value": {
+                      "title": "Value",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "address",
+              "args"
+            ],
+            "type": "object"
+          },
+          "metadata": {
+            "properties": {
+              "jobType": {
+                "default": "OscMessage",
+                "enum": [
+                  "OscMessage"
+                ],
+                "type": "string"
+              },
+              "respondTo": {
+              }
+            },
+            "required": [
+              "jobType"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "metadata"
+        ],
+        "title": "Send OSC Message",
+        "type": "object",
+        "x-form-schema": {
           "angular": "message.OscMessage.angular"
         },
         "x-response-schema": "OscMessage"
@@ -219,17 +219,6 @@
     "response": {
       "OscBundle": {
         "properties": {
-          "data": {
-            "properties": {
-              "example": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "example"
-            ],
-            "type": "object"
-          },
           "metadata": {
             "properties": {
               "code": {
@@ -245,23 +234,10 @@
             ],
             "type": "object"
           }
-        },
-        "title": "DoSomething",
-        "type": "object"
+        }
       },
       "OscMessage": {
         "properties": {
-          "data": {
-            "properties": {
-              "example": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "example"
-            ],
-            "type": "object"
-          },
           "metadata": {
             "properties": {
               "code": {
@@ -277,9 +253,7 @@
             ],
             "type": "object"
           }
-        },
-        "title": "DoSomething",
-        "type": "object"
+        }
       }
     },
     "version": "2.0.0"

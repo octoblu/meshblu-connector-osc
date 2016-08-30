@@ -1,36 +1,41 @@
-title: 'Send OSC Message'
+title: 'Send OSC Bundle'
 type: 'object'
 properties:
   data:
     type: 'object'
     properties:
-      'address':
-        'title': 'Address'
-        'type': 'string'
-      'args':
+      'timetag':
+        'title': 'Time Tag'
+        'type': 'number'
+      'elements':
+        'title': 'Elements'
         'type': 'array'
         'items':
-          'type': 'object'
-          'properties':
-            'type':
-              'title': 'Type'
+          type: 'object'
+          properties:
+            'address':
+              'title': 'Address'
               'type': 'string'
-              'enum': [
-                'string'
-                'float'
-                'integer'
-                'blob'
-                'true'
-                'false'
-                'null'
-                'bang'
-                'timetag'
-                'array'
-              ]
-            'value':
-              'title': 'Value'
-              'type': 'string'
-    required: [
-      'address'
-      'args'
-    ]
+            'args':
+              'type': 'array'
+              'items':
+                'type': 'object'
+                'properties':
+                  'type':
+                    'title': 'Type'
+                    'type': 'string'
+                    'enum': [
+                      'string'
+                      'float'
+                      'integer'
+                      'blob'
+                      'true'
+                      'false'
+                      'null'
+                      'bang'
+                      'timetag'
+                      'array'
+                    ]
+                  'value':
+                    'title': 'Value'
+                    'type': 'string'

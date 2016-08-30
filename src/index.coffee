@@ -63,7 +63,7 @@ class Connector extends EventEmitter
         @emit 'message', {
           devices: ['*']
           topic: 'osc-message'
-          payload: message
+          data: message
         }
       catch error
         console.error error
