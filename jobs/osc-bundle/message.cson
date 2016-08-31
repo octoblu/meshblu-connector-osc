@@ -4,26 +4,26 @@ properties:
   data:
     type: 'object'
     properties:
-      'timetag':
-        'title': 'Time Tag'
-        'type': 'number'
-      'elements':
-        'title': 'Elements'
-        'type': 'array'
-        'items':
+      timetag:
+        title: 'Time Tag'
+        type: 'number'
+      elements:
+        title: 'Elements'
+        type: 'array'
+        items:
           type: 'object'
           properties:
-            'address':
-              'title': 'Address'
-              'type': 'string'
-            'args':
-              'type': 'array'
-              'items':
-                'type': 'object'
-                'properties':
-                  'type':
-                    'title': 'Type'
-                    'type': 'string'
+            address:
+              title: 'Address'
+              type: 'string'
+            args:
+              type: 'array'
+              items:
+                type: 'object'
+                properties:
+                  type:
+                    title: 'Type'
+                    type: 'string'
                     'enum': [
                       'string'
                       'float'
@@ -36,6 +36,6 @@ properties:
                       'timetag'
                       'array'
                     ]
-                  'value':
-                    'title': 'Value'
-                    'type': 'string'
+                  value:
+                    title: 'Value'
+                    type: 'string'

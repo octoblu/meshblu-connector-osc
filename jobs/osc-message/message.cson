@@ -4,17 +4,17 @@ properties:
   data:
     type: 'object'
     properties:
-      'address':
-        'title': 'Address'
-        'type': 'string'
-      'args':
-        'type': 'array'
-        'items':
-          'type': 'object'
-          'properties':
-            'type':
-              'title': 'Type'
-              'type': 'string'
+      address:
+        title: 'Address'
+        type: 'string'
+      args:
+        type: 'array'
+        items:
+          type: 'object'
+          properties:
+            type:
+              title: 'Type'
+              type: 'string'
               'enum': [
                 'string'
                 'float'
@@ -27,10 +27,6 @@ properties:
                 'timetag'
                 'array'
               ]
-            'value':
-              'title': 'Value'
-              'type': 'string'
-    required: [
-      'address'
-      'args'
-    ]
+            value:
+              title: 'Value'
+              type: 'string'

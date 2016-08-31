@@ -181,10 +181,6 @@
                 "type": "array"
               }
             },
-            "required": [
-              "address",
-              "args"
-            ],
             "type": "object"
           },
           "metadata": {
